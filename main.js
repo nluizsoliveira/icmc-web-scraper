@@ -1,8 +1,6 @@
 const axios = require('axios');
 const querystring = require('querystring')
 
-
-
 async function pega_carai(){
 
     let res = await axios({
