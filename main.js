@@ -1,29 +1,20 @@
 const axios = require('axios');
+const querystring = require('querystring')
+
+
 
 async function pega_carai(){
 
-    //var bodyFormData = new FormData();
-    /*
-    bodyFormData.set('grupo', 'Aluno+Grad.');
-    bodyFormData.set('depto', '');
-    bodyFormData.set('nome', '');
-    bodyFormData.set('pagina', '3');
-    bodyFormData.set('titulo', '');
-    */
+    let res = await axios({
+        method: 'post',
+        url: 'https://www.icmc.usp.br/templates/icmc2015/php/pessoas.php',
+        data: querystring.stringify({ grupo: 'Aluno Grad.', pagina: '3'}),
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+        },
+    })
 
-    let requestContent = await axios.post('https://www.icmc.usp.br/templates/icmc2015/php/pessoas.php',{
-        grupo: 'Aluno+Grad.',
-        depto: '',
-        nome: '',
-        pagina: '3',
-        titulo: ''
-    }, 
-    
-    {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    });
-
-    console.log(requestContent);
+    console.log(res.data)
 }
 
 pega_carai()
